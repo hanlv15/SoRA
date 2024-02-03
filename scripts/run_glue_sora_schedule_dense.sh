@@ -8,14 +8,14 @@ max_lambda=7e-4
 lambda_num=7
 lr=1.2e-3
 r=8
-epoch=50
+epoch=10 # 50
 seed=48
-bsz=32
-epoch2=15
+bsz=32 # 32
+epoch2=2 # 15
 echo $task
 echo "lambda=" $lambda
 echo $seed
-CUDA_VISIBLE_DEVICES=0 \
+CUDA_VISIBLE_DEVICES=1,2 \
 python -u run_glue.py \
     --do_eval \
     --do_predict \
@@ -29,7 +29,7 @@ python -u run_glue.py \
     --load_best_model_at_end \
     --logging_steps 100 \
     --max_steps -1 \
-    --model_name_or_path /root/xtlv/data/models/DeBERTaV3_base \
+    --model_name_or_path /home/css/models/deberta-v3-base \
     --num_train_epochs $epoch \
     --output_dir results/$task-lambda2_${lambda2}_${max_lambda}_lambda_${lambda}_epoch_${epoch}_seed_${seed}_${epoch2} \
     --overwrite_output_dir \
@@ -38,7 +38,7 @@ python -u run_glue.py \
     --save_steps 1000 \
     --save_strategy steps \
     --save_total_limit 1 \
-    --tokenizer_name /root/xtlv/data/models/DeBERTaV3_base \
+    --tokenizer_name /home/css/models/deberta-v3-base \
     --warmup_ratio 0.06 \
     --warmup_steps 0 \
     --weight_decay 0.1 \

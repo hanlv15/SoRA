@@ -24,7 +24,7 @@ import warnings
 
 from .processor import AbstractTask
 
-main_dir = "/root/xtlv/data/sora_datasets/glue_datasets_from_dn"
+main_dir = "/home/hanlv/workspace/data/machine_learning/dataset/research/SoRA-data(GLUE)"
 
 ##GLUE
 class COLA(AbstractTask):

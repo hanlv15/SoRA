@@ -85,7 +85,7 @@ task_to_best_metric = {
     "qqp": "eval_accuracy",
 }
 
-data_path = '/root/xtlv/data/sora_datasets/glue_datasets_from_dn/'
+data_path = '/home/hanlv/workspace/data/machine_learning/dataset/research/SoRA-data(GLUE)/'
 
 logger = logging.getLogger(__name__)
 

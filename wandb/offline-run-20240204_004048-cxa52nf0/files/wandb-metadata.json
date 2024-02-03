@@ -1,0 +1,441 @@
+{
+    "os": "Linux-5.15.0-91-generic-x86_64-with-glibc2.31",
+    "python": "3.10.13",
+    "heartbeatAt": "2024-02-03T16:40:48.528221",
+    "startedAt": "2024-02-03T16:40:48.335815",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--do_eval",
+        "--do_predict",
+        "--do_train",
+        "--task_name",
+        "rte",
+        "--eval_steps",
+        "1000",
+        "--evaluation_strategy",
+        "steps",
+        "--greater_is_better",
+        "true",
+        "--learning_rate",
+        "1.2e-3",
+        "--max_grad_norm",
+        "0.1",
+        "--load_best_model_at_end",
+        "--logging_steps",
+        "100",
+        "--max_steps",
+        "-1",
+        "--model_name_or_path",
+        "/home/css/models/deberta-v3-base",
+        "--num_train_epochs",
+        "1",
+        "--output_dir",
+        "results/rte-lambda2_0_7e-4_lambda_0.001_epoch_1_seed_48_1",
+        "--overwrite_output_dir",
+        "--per_device_eval_batch_size",
+        "32",
+        "--per_device_train_batch_size",
+        "32",
+        "--save_steps",
+        "1000",
+        "--save_strategy",
+        "steps",
+        "--save_total_limit",
+        "1",
+        "--tokenizer_name",
+        "/home/css/models/deberta-v3-base",
+        "--warmup_ratio",
+        "0.06",
+        "--warmup_steps",
+        "0",
+        "--weight_decay",
+        "0.1",
+        "--disable_tqdm",
+        "true",
+        "--load_best_model_at_end",
+        "--ddp_find_unused_parameters",
+        "false",
+        "--sparse_lambda",
+        "0.001",
+        "--sparse_lambda_2",
+        "0",
+        "--seed",
+        "48",
+        "--lora_r",
+        "8",
+        "--max_seq_length",
+        "320",
+        "--max_lambda",
+        "7e-4",
+        "--lambda_schedule",
+        "linear",
+        "--lambda_num",
+        "7",
+        "--train_sparse"
+    ],
+    "state": "running",
+    "program": "/home/hanlv/workspace/code/research/infodemic/LLM/SoRA/run_glue.py",
+    "codePath": "run_glue.py",
+    "git": {
+        "remote": "https://github.com/TsinghuaC3I/SoRA.git",
+        "commit": "a806f2603203681ae433f204eed219f17a88d504"
+    },
+    "email": "hanlv1999@hotmail.com",
+    "root": "/home/hanlv/workspace/code/research/infodemic/LLM/SoRA",
+    "host": "css-Super-Server",
+    "username": "hanlv",
+    "executable": "/home/hanlv/miniconda3/envs/sora/bin/python",
+    "cpu_count": 32,
+    "cpu_count_logical": 64,
+    "cpu_freq": {
+        "current": 2047.16378125,
+        "min": 800.0,
+        "max": 3500.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 2300.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 2700.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 853.212,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 1400.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3499.998,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3500.0,
+            "min": 800.0,
+            "max": 3500.0
+        },
+        {
+            "current": 1700.0,
+            "min": 800.0,
+            "max": 3500.0
+        }
+    ],
+    "disk": {
+        "total": 1832.2072448730469,
+        "used": 1456.219036102295
+    },
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 3,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        },
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 125.39917755126953
+    }
+}

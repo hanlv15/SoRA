@@ -6,7 +6,7 @@ import numpy as np
 import torch
 logger = logging.getLogger(__name__)
 
-main_dir = "/root/xtlv/data/sora_datasets/glue_datasets_from_dn"
+main_dir = "/home/hanlv/workspace/data/machine_learning/dataset/research/SoRA-data(GLUE)"
 
 class AbstractTask(abc.ABC):
     name = NotImplemented
