@@ -10,7 +10,7 @@ lr=1.2e-3
 r=8
 epoch=10 # 50
 seed=48
-bsz=32 # 32
+bsz=1 # 32
 epoch2=1 # 15
 echo $task
 echo "lambda=" $lambda
@@ -29,7 +29,7 @@ python -u run_glue.py \
     --load_best_model_at_end \
     --logging_steps 100 \
     --max_steps -1 \
-    --model_name_or_path /home/css/models/deberta-v3-base \
+    --model_name_or_path /home/css/models/openchat-3.5-0106 \
     --num_train_epochs $epoch \
     --output_dir results/$task-lambda2_${lambda2}_${max_lambda}_lambda_${lambda}_epoch_${epoch}_seed_${seed}_${epoch2} \
     --overwrite_output_dir \
@@ -38,7 +38,6 @@ python -u run_glue.py \
     --save_steps 50 \
     --save_strategy steps \
     --save_total_limit 1 \
-    --tokenizer_name /home/css/models/deberta-v3-base \
     --warmup_ratio 0.06 \
     --warmup_steps 0 \
     --weight_decay 0.1 \

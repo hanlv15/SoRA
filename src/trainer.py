@@ -23,7 +23,7 @@ from transformers.trainer_utils import (
     TrainOutput,
     set_seed,
     get_last_checkpoint,
-    ShardedDDPOption,
+    # ShardedDDPOption,
     HPSearchBackend,
     EvalPrediction
 )
@@ -85,15 +85,15 @@ if is_sagemaker_mp_enabled():
 
     from transformers.trainer_pt_utils import smp_forward_backward, smp_forward_only, smp_gather, smp_nested_concat
 
-from transformers.integrations import is_fairscale_available
-if is_fairscale_available():
-    dep_version_check("fairscale")
-    import fairscale
-    from fairscale.nn.data_parallel import FullyShardedDataParallel as FullyShardedDDP
-    from fairscale.nn.data_parallel import ShardedDataParallel as ShardedDDP
-    from fairscale.nn.wrap import auto_wrap
-    from fairscale.optim import OSS
-    from fairscale.optim.grad_scaler import ShardedGradScaler
+# from transformers.integrations import is_fairscale_available
+# if is_fairscale_available():
+#     dep_version_check("fairscale")
+#     import fairscale
+#     from fairscale.nn.data_parallel import FullyShardedDataParallel as FullyShardedDDP
+#     from fairscale.nn.data_parallel import ShardedDataParallel as ShardedDDP
+#     from fairscale.nn.wrap import auto_wrap
+#     from fairscale.optim import OSS
+#     from fairscale.optim.grad_scaler import ShardedGradScaler
 
 import sys
 from transformers.optimization import Adafactor, AdamW, get_scheduler
@@ -327,52 +327,52 @@ class SparseTrainerMixin:
     def is_main_process(self):
         return self.args.local_rank in [0, -1]
 
-    def create_optimizer(self):
-        """
-        Setup the optimizer.
+    # def create_optimizer(self):
+    #     """
+    #     Setup the optimizer.
 
-        We provide a reasonable default that works well. If you want to use something else, you can pass a tuple in the
-        Trainer's init through :obj:`optimizers`, or subclass and override this method in a subclass.
-        """
+    #     We provide a reasonable default that works well. If you want to use something else, you can pass a tuple in the
+    #     Trainer's init through :obj:`optimizers`, or subclass and override this method in a subclass.
+    #     """
 
-        if self.optimizer is None:
-            decay_parameters = get_parameter_names(self.model, [nn.LayerNorm])
-            decay_parameters = [name for name in decay_parameters if "bias" not in name]
-            print(f"removing {GATE_PARAM_NAME} from standard optimizer")
-            optimizer_grouped_parameters = [
-                {
-                    "params": [p for n, p in self.model.named_parameters() if n in decay_parameters and GATE_PARAM_NAME not in n and p.requires_grad],
-                    "weight_decay": self.args.weight_decay,
-                },
-                {
-                    "params": [p for n, p in self.model.named_parameters() if n not in decay_parameters and GATE_PARAM_NAME not in n and p.requires_grad],
-                    "weight_decay": 0.0,
-                },
-            ]
-            optimizer_cls = Adafactor if self.args.adafactor else AdamW
-            if self.args.adafactor:
-                optimizer_cls = Adafactor
-                optimizer_kwargs = {"scale_parameter": False, "relative_step": False}
-            else:
-                optimizer_cls = AdamW
-                optimizer_kwargs = {
-                    "betas": (self.args.adam_beta1, self.args.adam_beta2),
-                    "eps": self.args.adam_epsilon,
-                }
-            optimizer_kwargs["lr"] = self.args.learning_rate
-            if self.sharded_ddp == ShardedDDPOption.SIMPLE:
-                self.optimizer = OSS(
-                    params=optimizer_grouped_parameters,
-                    optim=optimizer_cls,
-                    **optimizer_kwargs,
-                )
-            else:
-                self.optimizer = optimizer_cls(optimizer_grouped_parameters, **optimizer_kwargs)
+    #     if self.optimizer is None:
+    #         decay_parameters = get_parameter_names(self.model, [nn.LayerNorm])
+    #         decay_parameters = [name for name in decay_parameters if "bias" not in name]
+    #         print(f"removing {GATE_PARAM_NAME} from standard optimizer")
+    #         optimizer_grouped_parameters = [
+    #             {
+    #                 "params": [p for n, p in self.model.named_parameters() if n in decay_parameters and GATE_PARAM_NAME not in n and p.requires_grad],
+    #                 "weight_decay": self.args.weight_decay,
+    #             },
+    #             {
+    #                 "params": [p for n, p in self.model.named_parameters() if n not in decay_parameters and GATE_PARAM_NAME not in n and p.requires_grad],
+    #                 "weight_decay": 0.0,
+    #             },
+    #         ]
+    #         optimizer_cls = Adafactor if self.args.adafactor else AdamW
+    #         if self.args.adafactor:
+    #             optimizer_cls = Adafactor
+    #             optimizer_kwargs = {"scale_parameter": False, "relative_step": False}
+    #         else:
+    #             optimizer_cls = AdamW
+    #             optimizer_kwargs = {
+    #                 "betas": (self.args.adam_beta1, self.args.adam_beta2),
+    #                 "eps": self.args.adam_epsilon,
+    #             }
+    #         optimizer_kwargs["lr"] = self.args.learning_rate
+    #         if self.sharded_ddp == ShardedDDPOption.SIMPLE:
+    #             self.optimizer = OSS(
+    #                 params=optimizer_grouped_parameters,
+    #                 optim=optimizer_cls,
+    #                 **optimizer_kwargs,
+    #             )
+    #         else:
+    #             self.optimizer = optimizer_cls(optimizer_grouped_parameters, **optimizer_kwargs)
 
-        if is_sagemaker_mp_enabled():
-            self.optimizer = smp.DistributedOptimizer(self.optimizer)
+    #     if is_sagemaker_mp_enabled():
+    #         self.optimizer = smp.DistributedOptimizer(self.optimizer)
 
-        return self.optimizer
+    #     return self.optimizer
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """
@@ -552,7 +552,8 @@ class SparseTrainerMixin:
             else:
                 debug_overflow = DebugUnderflowOverflow(self.model)  # noqa
 
-        delay_optimizer_creation = self.sharded_ddp is not None and self.sharded_ddp != ShardedDDPOption.SIMPLE
+        delay_optimizer_creation = False
+        # delay_optimizer_creation = self.sharded_ddp is not None and self.sharded_ddp != ShardedDDPOption.SIMPLE
         if args.deepspeed:
             deepspeed_engine, optimizer, lr_scheduler = deepspeed_init(
                 self, num_training_steps=max_steps, resume_from_checkpoint=resume_from_checkpoint

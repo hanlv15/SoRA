@@ -10,12 +10,12 @@ lr=1.2e-3
 r=8
 epoch=10 # 50
 seed=48
-bsz=32 # 32
+bsz=16 # 32
 epoch2=2 # 15
 echo $task
 echo "lambda=" $lambda
 echo $seed
-CUDA_VISIBLE_DEVICES=1,2 \
+CUDA_VISIBLE_DEVICES=0,2 \
 python -u run_glue.py \
     --do_eval \
     --do_predict \
